@@ -1,5 +1,5 @@
 ---
-  - name: Config Web VM with Docker
+  - name: Config ELK Server
     hosts: elkservers
     become: true
     tasks:
