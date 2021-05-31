@@ -1,0 +1,28 @@
+---
+  - name: installing and launching packetbeat
+    hosts: webservers
+    become: true
+    tasks:
+
+     - name: download packetbeat deb
+       command: curl -L -O https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.4.0-amd64.deb
+ 
+     - name: install packetbeat deb
+       command: dpkg -i packetbeat-7.4.0-amd64.deb
+
+     - name: drop in packetbeat.yml 
+       copy:
+         src: /etc/ansible/files/packetbeat-config.yml
+         dest: /etc/packetbeat/packetbeat.yml
+
+     - name: setup packetbeat
+       command: packetbeat setup -e
+
+     - name: start packetbeat service
+       command: service packetbeat start
+ 
+     - name: enable service packetbeat on boot
+       systemd:
+         name: packetbeat
+         enabled: yes
+   
