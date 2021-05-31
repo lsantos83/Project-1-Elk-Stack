@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-(Images/Project_1_ELK_Diagram.jpg)
+(Images/Project_1_ELK_Diagram.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat, Metricbeat and Packetbeat.
 
@@ -87,7 +87,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-(Images/docker_ps_output.jpg)
+(Images/docker_ps_output.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -111,27 +111,33 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Download the Project_1_ELK_Stack.rar file from GitHub.
-- Copy the all the contents of Ansible folder file to /etc/ansible.
+- Copy the all the contents of Ansible folder file to /etc/ansible using the following commands:
+
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/ansible.cfg
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/hosts
+
+-Create the directories "files" and "roles" using mkdir files and mkdir roles
 - The ansible directory should now have 2 directories; "files" and "roles' as well as two text files, "ansible.cfg" and
   "hosts"
+-In the directory /etc/ansible/files download the config file using:
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/files/filebeat-config.yml
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/files/metricbeat-config.yml
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/files/packetbeat-config.yml
+- Navigate to /etc/ansible/roles/ and run the following commands:
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/roles/WebVMSetup.yml
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/roles/filebeat-playbook.yml
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/roles/install_elk.yml
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/roles/metricbeat-playbook.yml
+ - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/roles/packetbeat-playbook.yml
+
 - The files directory contains the config files for file, metric and packet beats.
 - The roles directory contains all the playbook files needed to configure this ELK Stack as well as the DVWM's.
 - The playbook needed to configure the Web VM's located at /etc/ansible/roles/WebVMSetup.yml.
 - Create 2-3 VM's intended to be the DVWM's.
 - Update the /etc/ansible/hosts file to include the private IP addresses of the newly created Web VM's under   [webservers].
-- Run the WebVMSetup.yml playbook to configure the Web VM's.
-- Run filebeat-playbook.yml, metricbeat-playbook.yml and packetbeat-playbook.yml playbooks located in /etc/ansible/roles   to install the beats applications on the Web VM's.
+- Run the WebVMSetup.yml playbook to configure the Web VM's using $>ansible-playbook WebVMSetup.yml
+- Run filebeat-playbook.yml, metricbeat-playbook.yml and packetbeat-playbook.yml playbooks located in /etc/ansible/roles   to install the beats applications on the Web VM's using the command $>ansible-playbook ___beat-playbook.yml. 
 - Create a VM intended to be the ELK Stack Monitoring VM.
 - Update the /etc/ansible/hosts file to include the private IP address of the ELK VM under [elkservers].
 - Navigate to /etc/ansible/roles and run the install_elk.yml playbook to configure to ELK VM.
 - Navigate to 52.167.3.53:5601 (Public IP of ELK VM: Port 5601) to check that the installation worked as expected. You should now see the Kibana homepage.
-
-
-
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
-
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
