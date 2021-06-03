@@ -1,0 +1,16 @@
+Disclaimer: Use a Container!
+
+"When you realize the difference between the container and the content, you will have knowledge." 
+-Idries Shah
+
+Cloud networks could have an almost unlimited number of virtual machines. These machines could serve as workstations, servers or monitoring systems all to be configured differently depending on their function. This would make setting up each one individually an absolute nightmare. 
+
+Enter Containers.
+
+In Project 1, I implemented the use of docker, which is a tool designed to run applications by using containers. These containers are a runnable instance of an image that contains everything an application needs to run without bloatware. This made it easy for me to pick and choose the applications I needed and I used a container named Ansible to run playbooks that installed multiple containers at once. 
+
+The Ansible container made it especially easy and efficient to configure multiple virtual machines at once. I was to set up an ELK monitoring server with 3 web machines, a jumpbox and a load balancer all behind a firewall. By simply editing a configuration file for ansible, I was able to execute a playbook that installed an application known as the damn vulnerable web application to all 3 web machines at once. I restricted access to all the machines and made it so that they could only be reached via SSH public key authentication through my PC. This prevents unwanted traffic from the open web and makes it so that you need an SSH key combination for each individual Web machine. Ansible also has a hosts file which makes it secure as access will only be allowed by the specific private addresses specified. Best of all is the fact that all you need to do is log into the actual container by running the “docker attach ansible_name” using as little resources as possible to configure all the machines on the network.
+
+I configured an ansible playbook file to install docker and enable the scripting necessary to download and launch a docker web container giving the web machines the able to run containers. By specifying which linux file package to install directly by making it an executable script, this leaves little room for error as the script will download exactly the version of the file you instruct it to. No incompatibility issues from installing different versions. To verify that the containers are installed, running “docker container list -a” will display all the containers currently installed.
+
+The same thing could have been achieved without the use of containers but this would have required me to log into each web machine individually and manually typing the commands needed to download each individual apt package. The advantage of doing it manually is as the saying goes “you want the work done, do it yourself”. This gives you the peace of mind that each individual system is configured to your liking but honestly this is a hard sell when I know that I can configure all the systems with a stroke of a key. One disadvantage is human error which could totally still happen at the script writing stage when configuring an ansible playbook with another being a time management issue as this will be a time sink configuring all these systems one by one.
