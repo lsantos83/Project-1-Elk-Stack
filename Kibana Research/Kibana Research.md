@@ -1,3 +1,6 @@
+Exploring Kibana Activity:
+
+
 Answer the following questions:
 
 - In the last 7 days, how many unique visitors were located in India?
@@ -70,3 +73,17 @@ Answer the following questions:
   Answer: Windows 8
 
 !![](Images/geo.png)
+
+- What do you think the user was doing?
+  Answer: The user downloaded a Linux package.
+
+- Was the file they downloaded malicious? If not, what is the file used for?
+  Answer: It could be anything from a harmless update package to a malicious file as it is a Linux package which is an           installation file.
+
+- Was there anything that seems suspicious about this activity?
+  Answer: The fact that its a referral link from Facebook raises flags as social networks are usually blocked by 
+          corporate VPN's due to the overabundance of malicious files that can be accidently downloaded through the
+          site.
+
+- Is any of the traffic you inspected potentially outside of compliance guidelines?
+  Answer: Downloading installation packages as well as following a referral link from Facebook should be addressed. The            user should be investigated further and educated on the dangers of malicious software.
