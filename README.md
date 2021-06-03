@@ -44,7 +44,7 @@ The configuration details of each machine may be found below.
 ## ELK Server Configuration
 The ELK VM exposes an Elastic Stack instance. **Docker** is used to download and manage an ELK container.
 
-Rather than configure ELK manually, we opted to develop a reusable Ansible Playbook to accomplish the task. This playbook is duplicated below.
+Rather than configure ELK manually, we opted to develop a reusable Ansible Playbook to accomplish the task.
 
 
 To use this playbook, one must log into the Jump Box, then issue: `ansible-playbook install_elk.yml elkservers`. This runs the `install_elk.yml` playbook on the `ELK-Stack-JB` host.
@@ -53,7 +53,7 @@ To use this playbook, one must log into the Jump Box, then issue: `ansible-playb
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the Jump-Box-Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+Only the Jump-Box-Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP address:
 
 - 73.13.134.150
 
@@ -111,7 +111,7 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the all the contents of Ansible folder file to /etc/ansible using the following commands:
+- Copy the all the contents of Ansible folder file to /etc/ansible by first moving to directory with "cd /etc/ansible" then using the following commands :
 
  - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/ansible.cfg
  - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/hosts
@@ -119,10 +119,12 @@ SSH into the control node and follow the steps below:
 -Create the directories "files" and "roles" using mkdir files and mkdir roles
 - The ansible directory should now have 2 directories; "files" and "roles' as well as two text files, "ansible.cfg" and
   "hosts"
--In the directory /etc/ansible/files download the config file using:
+
+-In the directory /etc/ansible/files download the config files using:
  - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/files/filebeat-config.yml
  - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/files/metricbeat-config.yml
  - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/files/packetbeat-config.yml
+
 - Navigate to /etc/ansible/roles/ and run the following commands:
  - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/roles/WebVMSetup.yml
  - curl https://github.com/lsantos83/Project-1-Elk-Stack/blob/556c14f32a84ac2353d7dd34c1f57ea3b403e5ba/Ansible/roles/filebeat-playbook.yml
@@ -136,7 +138,7 @@ SSH into the control node and follow the steps below:
 - Create 2-3 VM's intended to be the DVWM's.
 - Update the /etc/ansible/hosts file to include the private IP addresses of the newly created Web VM's under   [webservers].
 - Run the WebVMSetup.yml playbook to configure the Web VM's using $>ansible-playbook WebVMSetup.yml
-- Run filebeat-playbook.yml, metricbeat-playbook.yml and packetbeat-playbook.yml playbooks located in /etc/ansible/roles   to install the beats applications on the Web VM's using the command $>ansible-playbook ___beat-playbook.yml. 
+- Run filebeat-playbook.yml, metricbeat-playbook.yml and packetbeat-playbook.yml playbooks located in /etc/ansible/roles   to install the beats applications on the Web VM's using the command $>ansible-playbook (insert_beat_here)-playbook.yml. 
 - Create a VM intended to be the ELK Stack Monitoring VM.
 - Update the /etc/ansible/hosts file to include the private IP address of the ELK VM under [elkservers].
 - Navigate to /etc/ansible/roles and run the install_elk.yml playbook to configure to ELK VM.
